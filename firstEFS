@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+	
+	<IMG SRC="C:\ANGULAR JS - AND JAVA\ghostEngineersLogonew.gif" ALT="some text" WIDTH=300 HEIGHT=200 hspace="10" border="2"> 
+	  
+	<!-- make table border red -->
+	<style>	          
+    COLOR PICKER table, th, td {
+		border: 1px solid red;
+	}
+	</style>
+	  
+   <div ng-app="myApp" ng-controller="myCtrl">
+     
+    <hr>
+      <p>Total click: {{ clickCounter }}</p></td>
+      <button ng-click = "clickCounter = clickCounter + 1">Click Me!</button>
+    <hr><br>
+      
+	   Report By:{{ " " + firstName + " " + lastName }} <br>
+	   
+	     <p>  <hr />Eric is {{52 + 1}}.
+	          <br><hr /> <!-- break + newline added  -->
+	     </p>
+	  <div style="color:#0000FF">
+	    <h3>First Table</h3>	</div>
+	     Search:<input type="text" placeholder="Name" ng-model="searchText.name" />
+       Search:<input type="text" placeholder="City" ng-model="searchText.city" />
+
+   <br><br>
+
+   <table border="1">
+ 	   <thead>
+	      <tr>
+	             <th>Name</th>
+                 <th>Date Of Birth</th>
+                 <th>Gender</th>
+				 <th>City</th>
+				 <th>Salary</th>
+		  </tr>
+	   </thead>
+     
+	 <!-- First hard coded name. -->
+     <tr>
+	     <td> {{firstName +" " + lastName + " "}} </td>
+		   <td> {{dateOfBirth}} </td>
+		   <td> {{gender}} </td>
+		   <td> {{"Melbourne"}} </td>
+		   <td> ${{salary}} </td>
+	  </tr> 
+	  
+	  <!-- Array of names. -->		 
+	 <tr ng-repeat="employee in employees | filter:searchText">
+	     <td> {{employee.name}} </td>
+		 <td> {{employee.dateOfBirth | date:"dd/MM/yyyy" }} </td>
+	  	 <td> {{employee.gender }} </td>
+		 <td> {{employee.city }} </td>
+		 <td> ${{employee.salary }} </td>
+		 
+	  </tr>
+	</table>
+	
+	<!-- 2nd Table -->	
+
+	<div style="color:#0000FF">
+	  <h3>Second Table</h3>	</div>
+
+	<table border="1">	
+	   <thead>
+	      <tr>
+	             <th>Salary</th>
+                 <th>Date Of Birth</th>
+                 <th>Gender</th>
+				 <th>City</th>
+				 <th>Name</th>
+		  </tr>
+	   </thead>
+	
+     <tr ng-repeat="people in peoples">
+	     <td> ${{people.salary}} </td>
+		 <td> {{people.dateOfBirth | date:"dd/MM/yyyy" }} </td>
+	  	 <td> {{people.gender }} </td>
+		 <td> {{people.city }} </td>
+		 <td> {{people.name }} </td>
+	 </tr>		
+   </table>
+
+   <br><br>
+   ------------- End of Data    ------------- 
+   <br><br>
+
+</div>
+
+<script>
+  var app = angular.module("myApp", []);
+  app.controller("myCtrl", function($scope) {
+    $scope.firstName = "Eric";
+	$scope.middleName = "Alan";
+    $scope.lastName = "Martin";
+	$scope.dateOfBirth = "11/22/1980";
+	$scope.gender = "Male";
+	$scope.salary = "83000";
+	
+	/* Table One */
+	var employees=[
+	   { name: "Ben",  dateOfBirth: "11/10/1980", gender: "Male", salary: 55000, city:"London"},
+	   { name: "Sara", dateOfBirth: "06/02/1971", gender: "Female", salary: 68000, city:"Pittsburgh"},
+	   { name: "Whaley", dateOfBirth: "02/15/1983", gender: "Female", salary: 61000, city:"Chennai"},
+	   { name: "Steve", dateOfBirth: "05/11/1975", gender: "Male", salary: 74000, city:"Pittsburgh"}
+	];
+	
+	$scope.employees = employees;
+	
+	/* Table Two */
+	var peoples=[
+	   { name: "Tom",  dateOfBirth: "11/10/1980", gender: "Male", salary: 51000, city:"London"},
+	   { name: "Mary", dateOfBirth: "06/02/1971", gender: "Female", salary: 774000, city:"Pittsburgh"},
+	   { name: "Jill", dateOfBirth: "02/15/1983", gender: "Female", salary: 88000, city:"Chennai"},
+	   { name: "Harry", dateOfBirth: "05/11/1975", gender: "Male", salary: 95000, city:"Pittsburgh"}
+	];
+	
+	$scope.peoples = peoples;
+	
+  });
+</script>
+ 
+</body>
+</html>
